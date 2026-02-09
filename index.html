@@ -184,6 +184,66 @@
                 I am so grateful and I'm the luckiest girl that you said yes to me! 
                 You've just made my heart so happy! 💕
             </p>
+            <button class="choice-button" onclick="showQuestions()" style="margin-top: 20px;">Are you ready?</button>
+        </div>
+
+        <!-- Questions Screen -->
+        <div class="response-screen hidden" id="questionsIntro">
+            <h1>Mysterious Questions 🎭</h1>
+            <p class="response-message">
+                Now I need you to choose between some mysterious options I have for you:
+            </p>
+            <button class="choice-button" onclick="showQuestion1()" style="margin-top: 20px;">Let's go! ✨</button>
+        </div>
+
+        <!-- Question 1 -->
+        <div class="response-screen hidden" id="question1">
+            <h1>Question 1</h1>
+            <div class="emoji">🍕 or 🍝</div>
+            <div>
+                <button class="choice-button" onclick="answer1='pizza'; showQuestion2()">🍕 Pizza</button>
+                <button class="choice-button" onclick="answer1='spaghetti'; showQuestion2()">🍝 Spaghetti</button>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="response-screen hidden" id="question2">
+            <h1>Question 2</h1>
+            <p class="response-message">Choose a color:</p>
+            <div>
+                <button class="choice-button" onclick="answer2='green'; showQuestion3()" style="background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);">💚 Green</button>
+                <button class="choice-button" onclick="answer2='black'; showQuestion3()" style="background: linear-gradient(135deg, #4b5563 0%, #1f2937 100%);">🖤 Black</button>
+                <button class="choice-button" onclick="answer2='white'; showQuestion3()" style="background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); color: #333;">🤍 White</button>
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="response-screen hidden" id="question3">
+            <h1>Question 3</h1>
+            <div class="emoji">🎬 or 🎵</div>
+            <div>
+                <button class="choice-button" onclick="answer3='movie'; showQuestion4()">🎬 Movie</button>
+                <button class="choice-button" onclick="answer3='music'; showQuestion4()">🎵 Music</button>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="response-screen hidden" id="question4">
+            <h1>Question 4</h1>
+            <div class="emoji">🌅 or 🦆</div>
+            <div>
+                <button class="choice-button" onclick="answer4='sunset'; showFinalMessage()">🌅 Sunset</button>
+                <button class="choice-button" onclick="answer4='duck'; showFinalMessage()">🦆 Duck</button>
+            </div>
+        </div>
+
+        <!-- Final Message -->
+        <div class="response-screen hidden" id="finalMessage">
+            <h1>Thank You! 💕</h1>
+            <div class="emoji">🥰💖✨</div>
+            <p class="response-message">
+                Thanks for letting me know. I love you and be prepared to feel love and happy by my side! 💕
+            </p>
         </div>
 
         <!-- Response Screen - No -->
@@ -193,10 +253,56 @@
             <p class="response-message">
                 I'm sorry... I really wanted you to be my Valentine.
             </p>
+            <p class="response-message" style="margin-top: 20px; font-weight: bold;">
+                Are you sure?
+            </p>
+            <div>
+                <button class="choice-button" onclick="showSadEnding()">Yes, I'm sure 😢</button>
+                <button class="choice-button" onclick="showReconsidered()">No, wait! 💕</button>
+            </div>
+        </div>
+
+        <!-- Sad Ending -->
+        <div class="response-screen hidden" id="sadEnding">
+            <h1>😢</h1>
+            <div class="emoji">💔</div>
+            <img src="mm.jpg" alt="Sad puppy" style="max-width: 300px; margin: 20px 0; border-radius: 15px;">
+            <p class="response-message">
+                I understand... I'm heartbroken but I respect your decision.
+            </p>
+            <p class="response-message" style="margin-top: 20px; font-weight: bold;">
+                But... are you really, really sure? 🥺
+            </p>
+            <div>
+                <button class="choice-button" onclick="showFinalSadness()">Yes, really sure 💔</button>
+                <button class="choice-button" onclick="showReconsidered()">Actually... no 💕</button>
+            </div>
+        </div>
+
+        <!-- Final Sadness -->
+        <div class="response-screen hidden" id="finalSadness">
+            <h1>💔</h1>
+            <div class="emoji">😭</div>
+            <p class="response-message">
+                My heart is broken... but I'll always care about you.
+            </p>
+        </div>
+
+        <!-- Reconsidered Screen -->
+        <div class="response-screen hidden" id="reconsideredScreen">
+            <h1>I Knew It! 💖</h1>
+            <div class="emoji">😊✨</div>
+            <p class="response-message">
+                Ok, I knew you would like to be with me! Now, can you answer some questions please?
+            </p>
+            <button class="choice-button" onclick="showQuestions()" style="margin-top: 20px;">Let's do it! 💕</button>
         </div>
     </div>
 
     <script>
+        // Store answers
+        let answer1, answer2, answer3, answer4;
+
         function showQuestion() {
             document.getElementById('startScreen').classList.add('hidden');
             document.getElementById('questionScreen').classList.remove('hidden');
@@ -211,6 +317,53 @@
         function handleNo() {
             document.getElementById('questionScreen').classList.add('hidden');
             document.getElementById('noScreen').classList.remove('hidden');
+        }
+
+        function showSadEnding() {
+            document.getElementById('noScreen').classList.add('hidden');
+            document.getElementById('sadEnding').classList.remove('hidden');
+        }
+
+        function showFinalSadness() {
+            document.getElementById('sadEnding').classList.add('hidden');
+            document.getElementById('finalSadness').classList.remove('hidden');
+        }
+
+        function showReconsidered() {
+            document.getElementById('noScreen').classList.add('hidden');
+            document.getElementById('reconsideredScreen').classList.remove('hidden');
+        }
+
+        function showQuestions() {
+            document.getElementById('yesScreen').classList.add('hidden');
+            document.getElementById('reconsideredScreen').classList.add('hidden');
+            document.getElementById('questionsIntro').classList.remove('hidden');
+        }
+
+        function showQuestion1() {
+            document.getElementById('questionsIntro').classList.add('hidden');
+            document.getElementById('question1').classList.remove('hidden');
+        }
+
+        function showQuestion2() {
+            document.getElementById('question1').classList.add('hidden');
+            document.getElementById('question2').classList.remove('hidden');
+        }
+
+        function showQuestion3() {
+            document.getElementById('question2').classList.add('hidden');
+            document.getElementById('question3').classList.remove('hidden');
+        }
+
+        function showQuestion4() {
+            document.getElementById('question3').classList.add('hidden');
+            document.getElementById('question4').classList.remove('hidden');
+        }
+
+        function showFinalMessage() {
+            document.getElementById('question4').classList.add('hidden');
+            document.getElementById('finalMessage').classList.remove('hidden');
+            createConfetti();
         }
 
         function createConfetti() {
